@@ -135,7 +135,6 @@ const ChatBox = ({ isVisible }) => {
                     left: 0,
                     width: "96%",
                     position: "absolute",
-                    display: !isResponseVideoVisible ? "block" : "none",
                   }}
                   ref={loopVideoRef}
                   muted
