@@ -150,8 +150,8 @@ const ChatBox = ({ isVisible }) => {
                     //If there is a video in queue we set that to be played and make the response visible
                     setVideoName(videoInQueue);
                     setVideoInQueue(undefined);
-                    setResponseVideoVisible(true);
                     responseVideoRef.current.load();
+                    setResponseVideoVisible(true);
                     SpeechRecognition.stopListening();
                     responseVideoRef.current.play();
                   }}
