@@ -1,20 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Row, Col } from "react-simple-flex-grid";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import axios from "axios";
 import "./Home.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMicrophone,
-  faMicrophoneSlash,
-} from "@fortawesome/free-solid-svg-icons";
-
-import buttonBg from "../assets/button.webp";
 
 const ChatBox = ({ isVisible }) => {
-  const micRef = useRef(null);
   const loopVideoRef = useRef(null);
   const responseVideoRef = useRef(null);
 
@@ -30,8 +21,6 @@ const ChatBox = ({ isVisible }) => {
 
   const [shouldUnmuteOnEnd, setShouldUnmuteOnEnd] = useState(true);
   const [isResponseVideoVisible, setResponseVideoVisible] = useState(true);
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
-  const [isLoopVideoVisible, setLoopVideo] = useState(false);
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
 
@@ -62,8 +51,6 @@ const ChatBox = ({ isVisible }) => {
       setVideoInQueue(responseVideoName);
     }
   };
-
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const commands = [
     {
@@ -129,7 +116,7 @@ const ChatBox = ({ isVisible }) => {
           <div class="chatbox__support">
             <div class="chatbox__header">
               <div class="chatbox__image--header">
-                <img src="../assets/image.png" alt="image" />
+                <img src="../assets/image.png" alt="" />
               </div>
               <div class="chatbox__content--header">
                 <h4 class="chatbox__heading--header">Chat support</h4>
