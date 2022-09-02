@@ -81,6 +81,14 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .chatbox__support {
+    width: 300px !important;
+  }
+  .chatbox {
+    margin-right: -40px !important;
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -212,6 +220,7 @@ body {
 =============== */
 .chatbox {
   position: absolute;
+  margin-bottom: 40px;
   bottom: 30px;
   right: 30px;
 }

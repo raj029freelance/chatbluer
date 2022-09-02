@@ -26,8 +26,8 @@ const ChatBoxHomePage = () => {
       <div className="footer" style={{ zIndex: 10 }}>
         <Row className="footer-row">
           <Col span={2}></Col>
-          <Col span={6} className="icons-container"></Col>
-          <Col span={4} align="end">
+          <Col span={8} className="icons-container"></Col>
+          <Col span={2} align="end">
             <ChatBox isVisible={chatBox} />
             <button
               className={`mic-button`}

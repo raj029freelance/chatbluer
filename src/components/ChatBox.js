@@ -112,7 +112,7 @@ const ChatBox = ({ isVisible }) => {
   if (isVisible) {
     return (
       <>
-        <div class="chatbox" style={{ zIndex: 50, marginBottom: 40 }}>
+        <div class="chatbox">
           <div class="chatbox__support">
             <div class="chatbox__header">
               <div class="chatbox__image--header">
@@ -129,7 +129,7 @@ const ChatBox = ({ isVisible }) => {
               <div>
                 <video
                   style={{
-                    top: 100,
+                    top: 120,
                     marginLeft: 5,
                     marginRight: 10,
                     left: 0,
@@ -166,7 +166,7 @@ const ChatBox = ({ isVisible }) => {
                     // To reset the loop video to 0th second
                     loopVideoRef.current.currentTime = 0;
                     loopVideoRef.current.play();
-                    startListening();
+                    // startListening();
 
                     setVideoName(undefined);
                     setResponseVideoVisible(false);
@@ -179,7 +179,7 @@ const ChatBox = ({ isVisible }) => {
                   }}
                   style={{
                     position: "absolute",
-                    top: 100,
+                    top: 120,
                     marginLeft: 5,
                     marginRight: 10,
                     left: 0,
