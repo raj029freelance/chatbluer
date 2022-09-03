@@ -4,6 +4,8 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import axios from "axios";
 import "./Home.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const ChatBox = ({ isVisible }) => {
   const loopVideoRef = useRef(null);
@@ -206,12 +208,6 @@ const ChatBox = ({ isVisible }) => {
               </div>
             </div>
             <div class="chatbox__footer">
-              <img
-                src="../assets/icons/microphone.svg"
-                alt=""
-                onClick={toggleListening}
-                style={{ cursor: "pointer" }}
-              />
               <input
                 type="text"
                 value={textInput}
@@ -219,18 +215,23 @@ const ChatBox = ({ isVisible }) => {
                 onKeyDown={handleKeyDown}
                 onChange={handleChange}
               />
-              <a
-                href="#"
-                class="chatbox__send--footer"
+              <FontAwesomeIcon
+                style={{ color: "#fff", cursor: "pointer" }}
+                icon={faPaperPlane}
                 onClick={() => {
                   if (textInput.trim() !== "") {
                     handleEnter();
                     setTextInput("");
                   }
                 }}
-              >
-                Send
-              </a>
+              />
+              <img
+                src="../assets/icons/microphone.svg"
+                alt=""
+                onClick={toggleListening}
+                style={{ cursor: "pointer" }}
+              />
+
               {/* <img src="../assets/icons/attachment.svg" alt="" /> */}
             </div>
           </div>

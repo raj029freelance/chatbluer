@@ -164,6 +164,7 @@ body {
 .messages__item--visitor,
 .messages__item--typing {
   word-wrap: break-word;
+  z-index: 20;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -182,7 +183,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 20px 20px;
   background: var(--secondaryGradient);
   box-shadow: var(--secondaryBoxShadow);
