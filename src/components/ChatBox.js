@@ -30,6 +30,14 @@ const ChatBox = ({ isVisible }) => {
   useEffect(() => {
     if (!isVisible) return;
     // loopVideoRef.current.play();
+    setVideoName("welcome.mp4");
+    setMessages([
+      {
+        className: "messages__item messages__item--visitor",
+        message: "Hey there, How may I help you ?",
+      },
+    ]);
+    responseVideoRef.current.load();
     responseVideoRef.current.play();
     loopVideoRef.current.play();
   }, [isVisible]);
