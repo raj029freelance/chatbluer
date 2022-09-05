@@ -157,7 +157,6 @@ const FullScreenChatBox = () => {
                   className,
                 },
               ]);
-              startListening();
               setLoading(false);
               setVideoName(videoInQueue);
               setVideoInQueue(undefined);
