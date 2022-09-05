@@ -12,7 +12,7 @@ import {
   faMicrophone,
   faMicrophoneSlash,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 import buttonBg from "../assets/button.webp";
 import ChatBox from "./ChatBox";
 
@@ -31,7 +31,9 @@ const ChatBoxHomePage = () => {
             <ChatBox isVisible={chatBox} />
             <button
               className={`mic-button`}
-              onClick={() => setChatBox(!chatBox)}
+              onClick={() => {
+                setChatBox(!chatBox);
+              }}
               style={{ padding: "0.9em" }}
             >
               <FontAwesomeIcon
