@@ -36,7 +36,6 @@ const FullScreenChatBox = () => {
         message: "Hey there, How may I help you ?",
       },
     ]);
-    startListening();
   }, [isOverlayVisible]);
 
   // Sends the message to the server
@@ -175,6 +174,7 @@ const FullScreenChatBox = () => {
           <video
             ref={responseVideoRef}
             onEnded={() => {
+              startListening();
               // To reset the loop video to 0th second
               setDisabled(false);
               loopVideoRef.current.currentTime = 0;
