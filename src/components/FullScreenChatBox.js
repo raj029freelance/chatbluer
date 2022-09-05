@@ -216,6 +216,7 @@ const FullScreenChatBox = () => {
                   onKeyDown={handleKeyDown}
                   onChange={handleChange}
                   value={textInput}
+                  disabled={isDisabled}
                 />
                 <FontAwesomeIcon
                   icon={faPaperPlane}
