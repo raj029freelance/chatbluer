@@ -12,11 +12,11 @@ import buttonBg from "../assets/button.webp";
 const FullScreenChatBox = () => {
   const loopVideoRef = useRef(null);
   const responseVideoRef = useRef(null);
+  const [isOverlayVisible, setOverlayVisible] = useState(true);
 
   const [videoInQueue, setVideoInQueue] = useState(undefined);
   const [videoName, setVideoName] = useState("welcome.mp4");
   const [textInput, setTextInput] = useState("");
-  const [isOverlayVisible, setOverlayVisible] = useState(true);
   const [messages, setMessages] = useState([
     {
       className: "messages__item messages__item--visitor-fullscreen",
@@ -50,17 +50,8 @@ const FullScreenChatBox = () => {
         res.data.data[0].queryResult.fulfillmentText.split(";")[0] + ".mp4";
       const responseTextFromServer =
         res.data.data[0].queryResult.fulfillmentText.split(";")[1];
-      const className = "messages__item messages__item--visitor-fullscreen";
-
-      setMessages((messages) => [
-        ...messages,
-        {
-          message: responseTextFromServer,
-          className,
-        },
-      ]);
+      setResponseText(responseTextFromServer);
       // console.log("Video to be played : ", responseVideoName);
-      setLoading(false);
       setVideoInQueue(responseVideoName);
     }
   };
@@ -107,7 +98,6 @@ const FullScreenChatBox = () => {
           className,
         },
       ]);
-
       sendDialogToServer(message);
     }
   };
@@ -123,6 +113,7 @@ const FullScreenChatBox = () => {
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
+
   return (
     <>
       {isOverlayVisible && (
@@ -153,6 +144,15 @@ const FullScreenChatBox = () => {
               }
 
               //If there is a video in queue we set that to be played and make the response visible
+              const className = "messages__item messages__item--visitor";
+              setMessages((messages) => [
+                ...messages,
+                {
+                  message: responseText,
+                  className,
+                },
+              ]);
+              setLoading(false);
               setVideoName(videoInQueue);
               setVideoInQueue(undefined);
               setResponseVideoVisible(true);
@@ -226,7 +226,10 @@ const FullScreenChatBox = () => {
                 <FontAwesomeIcon
                   icon={faMicrophone}
                   style={{ color: listening ? "red" : "black" }}
-                  onClick={toggleListening}
+                  onTouchStart={startListening}
+                  onMouseDown={startListening}
+                  onTouchEnd={SpeechRecognition.stopListening}
+                  onMouseUp={SpeechRecognition.stopListening}
                 />
               </div>
             </div>

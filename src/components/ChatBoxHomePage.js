@@ -34,7 +34,11 @@ const ChatBoxHomePage = () => {
               onClick={() => setChatBox(!chatBox)}
               style={{ padding: "0.9em" }}
             >
-              <FontAwesomeIcon icon={faComment} className="mic-icon" />
+              <FontAwesomeIcon
+                icon={faComment}
+                className="mic-icon"
+                style={{ color: "#581b98" }}
+              />
             </button>
           </Col>
         </Row>

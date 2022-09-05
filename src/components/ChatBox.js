@@ -49,7 +49,6 @@ const ChatBox = ({ isVisible }) => {
         res.data.data[0].queryResult.fulfillmentText.split(";")[1];
       setResponseText(responseTextFromServer);
       // console.log("Video to be played : ", responseVideoName);
-      setLoading(false);
       setVideoInQueue(responseVideoName);
     }
   };
@@ -89,7 +88,8 @@ const ChatBox = ({ isVisible }) => {
     console.log(message);
     const className = "messages__item messages__item--operator";
     if (message.trim() !== "") {
-      setMessages([
+      setMessages((messages) => [
+        ...messages,
         {
           message,
           className,
@@ -120,22 +120,17 @@ const ChatBox = ({ isVisible }) => {
               <div class="chatbox__image--header">
                 <img src="../assets/image.png" alt="" />
               </div>
-              <div class="chatbox__content--header">
-                <h4 class="chatbox__heading--header">Chat support</h4>
-                <p class="chatbox__description--header">
-                  There are many variations of passages of Lorem Ipsum available
-                </p>
-              </div>
+              <div class="chatbox__content--header"></div>
             </div>
             <div class="chatbox__messages">
-              <div>
+              <div style={{ marginTop: 300 }}>
                 <video
                   style={{
-                    top: 120,
-                    marginLeft: 5,
-                    marginRight: 10,
+                    top: 0,
                     left: 0,
-                    width: "96%",
+                    width: "100%",
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
                     position: "absolute",
                   }}
                   ref={loopVideoRef}
@@ -149,6 +144,15 @@ const ChatBox = ({ isVisible }) => {
                     }
 
                     //If there is a video in queue we set that to be played and make the response visible
+                    const className = "messages__item messages__item--visitor";
+                    setMessages((messages) => [
+                      ...messages,
+                      {
+                        message: responseText,
+                        className,
+                      },
+                    ]);
+                    setLoading(false);
                     setVideoName(videoInQueue);
                     setVideoInQueue(undefined);
                     responseVideoRef.current.load();
@@ -179,12 +183,10 @@ const ChatBox = ({ isVisible }) => {
                     }
                   }}
                   style={{
-                    position: "absolute",
-                    top: 120,
-                    marginLeft: 5,
-                    marginRight: 10,
+                    top: 0,
                     left: 0,
-                    width: "96%",
+                    width: "100%",
+                    position: "absolute",
                     display: isResponseVideoVisible ? "block" : "none",
                   }}
                 >
@@ -200,23 +202,20 @@ const ChatBox = ({ isVisible }) => {
                     <span class="messages__dot"></span>
                     <span class="messages__dot"></span>
                   </div>
-                ) : !loading && responseText !== "" ? (
-                  <div class="messages__item messages__item--visitor">
-                    {responseText}
-                  </div>
                 ) : null}
               </div>
             </div>
             <div class="chatbox__footer">
               <input
                 type="text"
+                disabled={loading}
                 value={textInput}
                 placeholder="Write a message..."
                 onKeyDown={handleKeyDown}
                 onChange={handleChange}
               />
               <FontAwesomeIcon
-                style={{ color: "#fff", cursor: "pointer" }}
+                style={{ color: "#fff", cursor: "pointer", marginLeft: 5 }}
                 icon={faPaperPlane}
                 onClick={() => {
                   if (textInput.trim() !== "") {
@@ -229,7 +228,12 @@ const ChatBox = ({ isVisible }) => {
                 src="../assets/icons/microphone.svg"
                 alt=""
                 onClick={toggleListening}
+                className="hold-mic"
                 style={{ cursor: "pointer" }}
+                onTouchStart={startListening}
+                onMouseDown={startListening}
+                onTouchEnd={SpeechRecognition.stopListening}
+                onMouseUp={SpeechRecognition.stopListening}
               />
 
               {/* <img src="../assets/icons/attachment.svg" alt="" /> */}

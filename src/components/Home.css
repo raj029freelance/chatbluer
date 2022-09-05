@@ -262,7 +262,7 @@ body {
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   overflow-x: hidden;
   flex-direction: column-reverse;
 }
@@ -340,4 +340,35 @@ span.messages__dot {
   50% {
     transform: scale(1.05);
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.hold-mic {
+  padding: 10px;
+}
+.hold-mic:hover {
+  transition-delay: 0.2s;
+  background-color: #b000e694;
+  /* background-color: black; */
+  padding: 10px;
+  border-radius: 20px;
 }
