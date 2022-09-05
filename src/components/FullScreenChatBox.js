@@ -28,6 +28,7 @@ const FullScreenChatBox = () => {
   const [isResponseVideoVisible, setResponseVideoVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
+  const [isDisabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (isOverlayVisible) return;
@@ -39,6 +40,7 @@ const FullScreenChatBox = () => {
   const sendDialogToServer = async (message) => {
     if (message.trim() !== "") {
       setLoading(true);
+      setDisabled(true);
       // console.log("Captured text : ", message);
       const res = await axios.post(
         "https://vidchatapi.herokuapp.com/text-input",
@@ -169,6 +171,7 @@ const FullScreenChatBox = () => {
             ref={responseVideoRef}
             onEnded={() => {
               // To reset the loop video to 0th second
+              setDisabled(false);
               loopVideoRef.current.currentTime = 0;
               loopVideoRef.current.play();
               //   startListening();
@@ -226,10 +229,14 @@ const FullScreenChatBox = () => {
                 <FontAwesomeIcon
                   icon={faMicrophone}
                   style={{ color: listening ? "red" : "black" }}
-                  onTouchStart={startListening}
-                  onMouseDown={startListening}
-                  onTouchEnd={SpeechRecognition.stopListening}
-                  onMouseUp={SpeechRecognition.stopListening}
+                  onTouchStart={!isDisabled ? startListening : () => {}}
+                  onMouseDown={!isDisabled ? startListening : () => {}}
+                  onTouchEnd={
+                    !isDisabled ? SpeechRecognition.stopListening : () => {}
+                  }
+                  onMouseUp={
+                    !isDisabled ? SpeechRecognition.stopListening : () => {}
+                  }
                 />
               </div>
             </div>

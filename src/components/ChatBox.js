@@ -14,6 +14,7 @@ const ChatBox = ({ isVisible }) => {
   const [videoInQueue, setVideoInQueue] = useState(undefined);
   const [videoName, setVideoName] = useState("welcome.mp4");
   const [textInput, setTextInput] = useState("");
+  const [isDisabled, setDisabled] = useState(false);
   const [messages, setMessages] = useState([
     {
       className: "messages__item messages__item--visitor",
@@ -37,6 +38,7 @@ const ChatBox = ({ isVisible }) => {
   const sendDialogToServer = async (message) => {
     if (message.trim() !== "") {
       setLoading(true);
+      setDisabled(true);
       // console.log("Captured text : ", message);
       const res = await axios.post(
         "https://vidchatapi.herokuapp.com/text-input",
@@ -169,6 +171,7 @@ const ChatBox = ({ isVisible }) => {
                 <video
                   ref={responseVideoRef}
                   onEnded={() => {
+                    setDisabled(false);
                     // To reset the loop video to 0th second
                     loopVideoRef.current.currentTime = 0;
                     loopVideoRef.current.play();
@@ -209,7 +212,7 @@ const ChatBox = ({ isVisible }) => {
             <div class="chatbox__footer">
               <input
                 type="text"
-                disabled={loading}
+                disabled={isDisabled}
                 value={textInput}
                 placeholder="Write a message..."
                 onKeyDown={handleKeyDown}
@@ -235,13 +238,13 @@ const ChatBox = ({ isVisible }) => {
                   backgroundColor: listening ? "#b000e694" : "transparent",
                   borderRadius: "20px",
                 }}
-                onTouchStart={!loading ? startListening : () => {}}
-                onMouseDown={!loading ? startListening : () => {}}
+                onTouchStart={!isDisabled ? startListening : () => {}}
+                onMouseDown={!isDisabled ? startListening : () => {}}
                 onTouchEnd={
-                  !loading ? SpeechRecognition.stopListening : () => {}
+                  !isDisabled ? SpeechRecognition.stopListening : () => {}
                 }
                 onMouseUp={
-                  !loading ? SpeechRecognition.stopListening : () => {}
+                  !isDisabled ? SpeechRecognition.stopListening : () => {}
                 }
               />
 
