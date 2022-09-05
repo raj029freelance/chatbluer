@@ -18,6 +18,7 @@ import ChatBox from "./ChatBox";
 
 const ChatBoxHomePage = () => {
   const [chatBox, setChatBox] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
 
   return (
     <div>
@@ -28,20 +29,33 @@ const ChatBoxHomePage = () => {
           <Col span={2}></Col>
           <Col span={8} className="icons-container"></Col>
           <Col span={2} align="end">
-            <ChatBox isVisible={chatBox} />
-            <button
-              className={`mic-button`}
-              onClick={() => {
-                setChatBox(!chatBox);
-              }}
-              style={{ padding: "0.9em" }}
-            >
-              <FontAwesomeIcon
-                icon={faComment}
-                className="mic-icon"
-                style={{ color: "#581b98" }}
-              />
-            </button>
+            <ChatBox
+              isVisible={chatBox}
+              setButtonDisabled={setButtonDisabled}
+            />
+            {!isButtonDisabled ? (
+              <button
+                className={`mic-button`}
+                onClick={() => {
+                  setChatBox(!chatBox);
+                }}
+                style={{ padding: "0.9em" }}
+              >
+                <FontAwesomeIcon
+                  icon={faComment}
+                  className="mic-icon"
+                  style={{ color: "#581b98" }}
+                />
+              </button>
+            ) : (
+              <button className={`mic-button`} style={{ padding: "0.9em" }}>
+                <FontAwesomeIcon
+                  icon={faComment}
+                  className="mic-icon"
+                  style={{ color: "#581b98" }}
+                />
+              </button>
+            )}
           </Col>
         </Row>
       </div>

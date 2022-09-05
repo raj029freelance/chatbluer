@@ -8,7 +8,7 @@ import "./Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-const ChatBox = ({ isVisible }) => {
+const ChatBox = ({ isVisible, setButtonDisabled }) => {
   const loopVideoRef = useRef(null);
   const responseVideoRef = useRef(null);
   const welcomeVideoRef = useRef(null);
@@ -53,6 +53,7 @@ const ChatBox = ({ isVisible }) => {
     if (message.trim() !== "") {
       setLoading(true);
       setDisabled(true);
+      setButtonDisabled(true);
       // console.log("Captured text : ", message);
       const res = await axios.post(
         "https://vidchatapi.herokuapp.com/text-input",
@@ -182,14 +183,17 @@ const ChatBox = ({ isVisible }) => {
 
                     //If there is a video in queue we set that to be played and make the response visible
                     const className = "messages__item messages__item--visitor";
-                    setMessages((messages) => [
-                      ...messages,
-                      {
-                        message: responseText,
-                        className,
-                      },
-                    ]);
+                    if (isVisible) {
+                      setMessages((messages) => [
+                        ...messages,
+                        {
+                          message: responseText,
+                          className,
+                        },
+                      ]);
+                    }
                     setLoading(false);
+                    setButtonDisabled(false);
                     setVideoName(videoInQueue);
                     setVideoInQueue(undefined);
                     responseVideoRef.current.load();
@@ -206,6 +210,7 @@ const ChatBox = ({ isVisible }) => {
                   ref={responseVideoRef}
                   onEnded={() => {
                     setDisabled(false);
+                    setButtonDisabled(false);
                     // To reset the loop video to 0th second
                     loopVideoRef.current.currentTime = 0;
                     loopVideoRef.current.play();
