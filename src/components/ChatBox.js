@@ -193,7 +193,6 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
                       ]);
                     }
                     setLoading(false);
-                    setButtonDisabled(false);
                     setVideoName(videoInQueue);
                     setVideoInQueue(undefined);
                     responseVideoRef.current.load();
