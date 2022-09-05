@@ -119,12 +119,12 @@ const ChatBox = ({ isVisible }) => {
       <>
         <div class="chatbox">
           <div class="chatbox__support">
-            <div class="chatbox__header">
+            {/* <div class="chatbox__header">
               <div class="chatbox__image--header">
                 <img src="../assets/image.png" alt="" />
               </div>
               <div class="chatbox__content--header"></div>
-            </div>
+            </div> */}
             <div class="chatbox__messages">
               <div style={{ marginTop: 300 }}>
                 <video
@@ -190,6 +190,8 @@ const ChatBox = ({ isVisible }) => {
                     top: 0,
                     left: 0,
                     width: "100%",
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
                     position: "absolute",
                     display: isResponseVideoVisible ? "block" : "none",
                   }}
