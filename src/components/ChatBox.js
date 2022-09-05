@@ -5,7 +5,7 @@ import SpeechRecognition, {
 import axios from "axios";
 import "./Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faMicrophone, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const ChatBox = ({ isVisible }) => {
   const loopVideoRef = useRef(null);
@@ -215,7 +215,7 @@ const ChatBox = ({ isVisible }) => {
                 onChange={handleChange}
               />
               <FontAwesomeIcon
-                style={{ color: "#fff", cursor: "pointer", marginLeft: 5 }}
+                style={{ color: "#fff", cursor: "pointer", marginLeft: 15 }}
                 icon={faPaperPlane}
                 onClick={() => {
                   if (textInput.trim() !== "") {
@@ -224,12 +224,11 @@ const ChatBox = ({ isVisible }) => {
                   }
                 }}
               />
-              <img
-                src="../assets/icons/microphone.svg"
-                alt=""
+              <FontAwesomeIcon
+                icon={faMicrophone}
                 onClick={toggleListening}
                 className="hold-mic"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", color: "#fff", marginLeft: 10 }}
                 onTouchStart={startListening}
                 onMouseDown={startListening}
                 onTouchEnd={SpeechRecognition.stopListening}
