@@ -34,14 +34,16 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
     if (!isVisible) return;
     // loopVideoRef.current.play();
 
-    setVideoName("welcome.mp4");
-    setResponseVideoVisible(true);
+    // setVideoName("welcome.mp4");
+    setWelcomeVideo(true);
+    // setResponseVideoVisible(true);
     setMessages([
       {
         className: "messages__item messages__item--visitor",
         message: "Hey there, How may I help you ?",
       },
     ]);
+    welcomeVideoRef.current.play();
     responseVideoRef.current.load();
     responseVideoRef.current.play();
     loopVideoRef.current.play();
@@ -142,7 +144,7 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
             </div> */}
             <div class="chatbox__messages">
               <div style={{ marginTop: 300 }}>
-                {/* <video
+                <video
                   style={{
                     top: 0,
                     left: 0,
@@ -160,7 +162,7 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
                   }}
                 >
                   <source src="/videos/welcome.mp4" type="video/mp4" />
-                </video> */}
+                </video>
 
                 <video
                   style={{
