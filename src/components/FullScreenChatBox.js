@@ -28,7 +28,7 @@ const FullScreenChatBox = () => {
   const [isResponseVideoVisible, setResponseVideoVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
-  const [isDisabled, setDisabled] = useState(false);
+  const [isDisabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (isOverlayVisible) return;

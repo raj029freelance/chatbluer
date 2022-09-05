@@ -14,7 +14,7 @@ const ChatBox = ({ isVisible }) => {
   const [videoInQueue, setVideoInQueue] = useState(undefined);
   const [videoName, setVideoName] = useState("welcome.mp4");
   const [textInput, setTextInput] = useState("");
-  const [isDisabled, setDisabled] = useState(false);
+  const [isDisabled, setDisabled] = useState(true);
   const [messages, setMessages] = useState([
     {
       className: "messages__item messages__item--visitor",
