@@ -10,6 +10,7 @@ import { faMicrophone, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 const ChatBox = ({ isVisible }) => {
   const loopVideoRef = useRef(null);
   const responseVideoRef = useRef(null);
+  const welcomeVideoRef = useRef(null);
 
   const [videoInQueue, setVideoInQueue] = useState(undefined);
   const [videoName, setVideoName] = useState("welcome.mp4");
@@ -26,17 +27,19 @@ const ChatBox = ({ isVisible }) => {
   const [isResponseVideoVisible, setResponseVideoVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [responseText, setResponseText] = useState("");
+  const [isWelcomeVideoVisible, setWelcomeVideo] = useState(true);
 
   useEffect(() => {
     if (!isVisible) return;
     // loopVideoRef.current.play();
-    setVideoName("welcome.mp4");
+    setWelcomeVideo(true);
     setMessages([
       {
         className: "messages__item messages__item--visitor",
         message: "Hey there, How may I help you ?",
       },
     ]);
+    welcomeVideoRef.current.play();
     responseVideoRef.current.load();
     responseVideoRef.current.play();
     loopVideoRef.current.play();
@@ -135,6 +138,26 @@ const ChatBox = ({ isVisible }) => {
             </div> */}
             <div class="chatbox__messages">
               <div style={{ marginTop: 300 }}>
+                <video
+                  style={{
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
+                    position: "absolute",
+                    display: isWelcomeVideoVisible ? "block" : "none",
+                    zIndex: 100,
+                  }}
+                  ref={welcomeVideoRef}
+                  muted
+                  onEnded={() => {
+                    setWelcomeVideo(false);
+                  }}
+                >
+                  <source src="/videos/welcome.mp4" type="video/mp4" />
+                </video>
+
                 <video
                   style={{
                     top: 0,
