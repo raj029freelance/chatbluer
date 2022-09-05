@@ -36,6 +36,7 @@ const FullScreenChatBox = () => {
         message: "Hey there, How may I help you ?",
       },
     ]);
+    startListening();
   }, [isOverlayVisible]);
 
   // Sends the message to the server
@@ -43,6 +44,7 @@ const FullScreenChatBox = () => {
     if (message.trim() !== "") {
       setLoading(true);
       setDisabled(true);
+      SpeechRecognition.stopListening();
       // console.log("Captured text : ", message);
       const res = await axios.post(
         "https://vidchatapi.herokuapp.com/text-input",
@@ -156,6 +158,7 @@ const FullScreenChatBox = () => {
                   className,
                 },
               ]);
+              startListening();
               setLoading(false);
               setVideoName(videoInQueue);
               setVideoInQueue(undefined);
@@ -195,7 +198,7 @@ const FullScreenChatBox = () => {
         <Col md={4} xs={12} className="right-container">
           <div class="chatbox-fullscreen">
             <div class="chatbox__support-fullscreen">
-              <div class="chatbox__messages">
+              <div class="chatbox__messages" style={{ marginBottom: 50 }}>
                 <div>
                   {messages.map((message) => {
                     return (
@@ -211,7 +214,7 @@ const FullScreenChatBox = () => {
                   ) : null}
                 </div>
               </div>
-              <div class="chatbox__footer-fullscreen">
+              {/* <div class="chatbox__footer-fullscreen">
                 <input
                   type="text"
                   placeholder="Write a message..."
@@ -241,7 +244,7 @@ const FullScreenChatBox = () => {
                     !isDisabled ? SpeechRecognition.stopListening : () => {}
                   }
                 />
-              </div>
+              </div>  */}
             </div>
           </div>
         </Col>
