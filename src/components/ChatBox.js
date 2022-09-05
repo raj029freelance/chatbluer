@@ -30,6 +30,7 @@ const ChatBox = ({ isVisible }) => {
     if (!isVisible) return;
     // loopVideoRef.current.play();
     responseVideoRef.current.play();
+    loopVideoRef.current.play();
   }, [isVisible]);
 
   // Sends the message to the server
@@ -227,12 +228,22 @@ const ChatBox = ({ isVisible }) => {
               <FontAwesomeIcon
                 icon={faMicrophone}
                 onClick={toggleListening}
-                className="hold-mic"
-                style={{ cursor: "pointer", color: "#fff", marginLeft: 10 }}
-                onTouchStart={startListening}
-                onMouseDown={startListening}
-                onTouchEnd={SpeechRecognition.stopListening}
-                onMouseUp={SpeechRecognition.stopListening}
+                style={{
+                  cursor: "pointer",
+                  color: "#fff",
+                  marginLeft: 10,
+                  padding: "10px",
+                  backgroundColor: listening ? "#b000e694" : "transparent",
+                  borderRadius: "20px",
+                }}
+                onTouchStart={!loading ? startListening : () => {}}
+                onMouseDown={!loading ? startListening : () => {}}
+                onTouchEnd={
+                  !loading ? SpeechRecognition.stopListening : () => {}
+                }
+                onMouseUp={
+                  !loading ? SpeechRecognition.stopListening : () => {}
+                }
               />
 
               {/* <img src="../assets/icons/attachment.svg" alt="" /> */}
