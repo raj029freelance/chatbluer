@@ -17,12 +17,7 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
   const [videoName, setVideoName] = useState("welcome.mp4");
   const [textInput, setTextInput] = useState("");
   const [isDisabled, setDisabled] = useState(true);
-  const [messages, setMessages] = useState([
-    {
-      className: "messages__item messages__item--visitor",
-      message: "Hey there, How may I help you ?",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   const [shouldUnmuteOnEnd, setShouldUnmuteOnEnd] = useState(true);
   const [isResponseVideoVisible, setResponseVideoVisible] = useState(true);
@@ -37,15 +32,17 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
     // setVideoName("welcome.mp4");
     setWelcomeVideo(true);
     // setResponseVideoVisible(true);
-    setMessages([
+
+    welcomeVideoRef.current.play();
+    responseVideoRef.current.load();
+    responseVideoRef.current.play();
+    setMessages((messages) => [
+      ...messages,
       {
         className: "messages__item messages__item--visitor",
         message: "Hey there, How may I help you ?",
       },
     ]);
-    welcomeVideoRef.current.play();
-    responseVideoRef.current.load();
-    responseVideoRef.current.play();
     loopVideoRef.current.play();
   }, [isVisible]);
 

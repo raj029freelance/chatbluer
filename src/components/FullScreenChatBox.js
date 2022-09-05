@@ -17,12 +17,7 @@ const FullScreenChatBox = () => {
   const [videoInQueue, setVideoInQueue] = useState(undefined);
   const [videoName, setVideoName] = useState("welcome.mp4");
   const [textInput, setTextInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      className: "messages__item messages__item--visitor-fullscreen",
-      message: "Hey there, How may I help you ?",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   const [shouldUnmuteOnEnd, setShouldUnmuteOnEnd] = useState(true);
   const [isResponseVideoVisible, setResponseVideoVisible] = useState(true);
@@ -34,6 +29,13 @@ const FullScreenChatBox = () => {
     if (isOverlayVisible) return;
     // loopVideoRef.current.play();
     responseVideoRef.current.play();
+    setMessages((messages) => [
+      ...messages,
+      {
+        className: "messages__item messages__item--visitor-fullscreen",
+        message: "Hey there, How may I help you ?",
+      },
+    ]);
   }, [isOverlayVisible]);
 
   // Sends the message to the server
