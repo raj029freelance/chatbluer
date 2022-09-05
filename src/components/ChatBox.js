@@ -227,7 +227,6 @@ const ChatBox = ({ isVisible }) => {
               />
               <FontAwesomeIcon
                 icon={faMicrophone}
-                onClick={toggleListening}
                 style={{
                   cursor: "pointer",
                   color: "#fff",
