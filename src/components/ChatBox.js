@@ -36,12 +36,11 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
     welcomeVideoRef.current.play();
     responseVideoRef.current.load();
     responseVideoRef.current.play();
-    setMessages((messages) => [
-      ...messages,
+    setMessages([
       {
         className: "messages__item messages__item--visitor",
         message: "Hey there, How may I help you ?",
-      },
+      }
     ]);
     loopVideoRef.current.play();
   }, [isVisible]);
