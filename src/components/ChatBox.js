@@ -40,7 +40,7 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
       {
         className: "messages__item messages__item--visitor",
         message: "Hey there, How may I help you ?",
-      }
+      },
     ]);
     loopVideoRef.current.play();
   }, [isVisible]);
@@ -273,7 +273,7 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
                   color: "#fff",
                   marginLeft: 10,
                   padding: "10px",
-                  backgroundColor: listening ? "#b000e694" : "transparent",
+                  backgroundColor: listening ? "red" : "transparent",
                   borderRadius: "20px",
                 }}
                 onTouchStart={!isDisabled ? startListening : () => {}}

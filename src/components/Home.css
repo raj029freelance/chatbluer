@@ -75,7 +75,7 @@
 
 .chatbox__support {
   background: #f9f9f9;
-  height: 450px;
+  height: 750px;
   width: 550px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
@@ -196,6 +196,7 @@ body {
   border: none;
   padding: 10px 10px;
   border-radius: 30px;
+  width: 100%;
   text-align: center;
 }
 
@@ -232,7 +233,7 @@ body {
   flex-direction: column;
   background: #eee;
   width: 330px;
-  height: 550px;
+  height: 750px;
   opacity: 1;
   transition: all 0.5s ease-in-out;
   border-bottom-left-radius: 10px;
@@ -365,6 +366,7 @@ span.messages__dot {
 .hold-mic {
   padding: 10px;
 }
+
 .hold-mic:hover {
   transition-delay: 0.2s;
   background-color: #b000e694;
