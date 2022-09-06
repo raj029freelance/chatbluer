@@ -252,6 +252,10 @@ const ChatBox = ({ isVisible, setButtonDisabled }) => {
                 type="text"
                 disabled={isDisabled}
                 value={textInput}
+                style={{
+                  caretColor: listening ? "transparent" : "#000",
+                  outline: "none",
+                }}
                 placeholder="Write a message..."
                 onKeyDown={handleKeyDown}
                 onChange={handleChange}
